@@ -1,50 +1,67 @@
-# Welcome to your Expo app 👋
+# DevPocket
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Make quick GitHub edits and trigger GitHub Actions from your phone.
 
-## Get started
+## How it works
 
-1. Install dependencies
+1. **Sign in with GitHub** — uses GitHub's OAuth *device flow* (no password stored on device).
+2. **Browse repositories** — searchable list of your repos.
+3. **Edit a file** — mobile code editor with syntax highlighting, line numbers, and search.
+4. **Commit** — commit to the default branch with a message.
+5. **Run a workflow** — list `.github/workflows`, dispatch with one tap.
+6. **Live logs** — stream job output in real time.
+
+Out of scope for the MVP: merge conflicts, pull requests, branch comparison, git history, AI, terminal.
+
+## Setup
+
+1. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Create a GitHub OAuth App at https://github.com/settings/developers/new
+   - Name it anything (e.g. "DevPocket")
+   - Homepage URL: `https://example.com`
+   - Callback URL: `https://example.com/callback` (not used for device flow, but required)
+   - No scopes need to be selected — the app requests `repo workflow` at sign-in
+
+3. Copy the env template and add your client ID:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Set `EXPO_PUBLIC_GITHUB_CLIENT_ID=your_client_id`.
+
+4. Start the app:
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+   Open it in Expo Go on your phone (or press `w` for web).
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+app/
+  index.tsx                        # sign-in + repo list
+  repo/[owner]/[name]/index.tsx    # file browser
+  repo/[owner]/[name]/edit/[...path].tsx   # editor + commit
+  repo/[owner]/[name]/actions/index.tsx    # workflow list + dispatch
+  repo/[owner]/[name]/actions/[runId].tsx  # live logs
+lib/
+  auth.tsx      # auth context (device flow + secure storage)
+  github.ts     # GitHub API client
+  editorHtml.ts # CodeMirror editor injected into a WebView
+components/     # shared UI
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Scripts
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npm run lint       # eslint
+npx tsc --noEmit   # typecheck
+```

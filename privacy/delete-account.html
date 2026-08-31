@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="How to delete your DevPocket account and data.">
+  <title>DevPocket – Delete Account</title>
+  <style>
+    :root { color-scheme: light; --ink: #111111; --paper: #fafafa; --muted: #525252; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 40px 24px 96px; }
+    header { border-bottom: 1px solid #e5e5e5; padding-bottom: 24px; margin-bottom: 32px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; }
+    .brand .dot {
+      display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+      background: var(--ink); color: #fff; font-size: 14px;
+    }
+    h1 { font-size: 34px; line-height: 1.15; letter-spacing: -0.03em; margin: 28px 0 8px; }
+    .updated { color: var(--muted); font-size: 13px; margin: 0 0 24px; }
+    h2 { font-size: 20px; letter-spacing: -0.02em; margin: 40px 0 12px; }
+    p { margin: 0 0 16px; color: #333; }
+    ol { margin: 0 0 16px; padding-left: 22px; }
+    li { margin-bottom: 14px; color: #333; }
+    code { background: #eef0ef; border-radius: 6px; padding: 1px 6px; font-size: 14px; }
+    a { color: #15803d; text-decoration: underline; text-underline-offset: 3px; }
+    .highlight { background: #e8f7eb; border-radius: 12px; padding: 16px 18px; font-size: 15px; }
+    .warn { background: #fff4e5; border-radius: 12px; padding: 16px 18px; font-size: 15px; }
+    footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid #e5e5e5; font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand"><span class="dot">D</span> DevPocket</div>
+    </header>
+
+    <h1>Delete your DevPocket account and data</h1>
+    <p class="updated">Last updated: 10 August 2026</p>
+
+    <div class="highlight">DevPocket does not operate its own servers and does not store your data on our infrastructure. There is no DevPocket-side account to close — your "DevPocket account" is the GitHub sign-in you used to authorize the app, and the data you see in the app lives in your GitHub account. Deleting your account and data is done from GitHub, as described below.</div>
+
+    <h2>Step 1 – Sign out of DevPocket</h2>
+    <p>Open DevPocket and sign out (Profile → Sign out). This immediately removes your GitHub access token from your device, so the app can no longer access your GitHub account.</p>
+
+    <h2>Step 2 – Revoke DevPocket's GitHub access</h2>
+    <p>Visit your GitHub settings and revoke the "DevPocket" OAuth app:</p>
+    <ol>
+      <li>Open <a href="https://github.com/settings/applications" rel="noopener">github.com/settings/applications</a> while signed in to GitHub.</li>
+      <li>Find <strong>DevPocket</strong> under "Authorized OAuth Apps".</li>
+      <li>Click <strong>Revoke access</strong>.</li>
+    </ol>
+    <p>This prevents DevPocket from making any further requests to GitHub on your behalf.</p>
+
+    <h2>Step 3 – Delete your GitHub account (optional)</h2>
+    <p>If you want to permanently delete the GitHub account itself and all of the data inside it (repositories, code, and history):</p>
+    <ol>
+      <li>Go to <a href="https://github.com/settings/admin" rel="noopener">github.com/settings/admin</a> while signed in to GitHub.</li>
+      <li>Scroll to the bottom and select <strong>Delete your account</strong>.</li>
+      <li>Follow GitHub's on-screen instructions to confirm.</li>
+    </ol>
+
+    <div class="warn">Deleting your GitHub account is permanent and cannot be undone. It will delete all repositories, code, and data associated with that account. Do this only if you are sure.</div>
+
+    <h2>What data is deleted, and what is retained</h2>
+    <ul>
+      <li><strong>Deleted immediately:</strong> your access token and cached profile on your device (when you sign out).</li>
+      <li><strong>Deleted when you revoke access:</strong> DevPocket's permission to use your GitHub account.</li>
+      <li><strong>Deleted when you delete your GitHub account:</strong> all code and data stored in GitHub under that account.</li>
+      <li><strong>Retained by us:</strong> nothing. We operate no servers or databases, so there is no data for us to keep.</li>
+    </ul>
+
+    <p>For extra privacy, you may also uninstall the DevPocket app from your device to remove all locally cached data.</p>
+
+    <h2>Need help?</h2>
+    <p>If you have questions, or you would like us to help you delete data associated with the DevPocket app, email <a href="mailto:mdsahil1631@gmail.com">mdsahil1631@gmail.com</a>. We will respond as soon as possible.</p>
+
+    <footer>
+      <p>© <span id="year">2026</span> DevPocket. See also our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+    </footer>
+  </div>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
